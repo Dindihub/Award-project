@@ -11,6 +11,7 @@ dj-database-url = "*"
 django-bootstrap4 = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
+pillow = "*"
 
 [dev-packages]
 
