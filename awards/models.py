@@ -11,6 +11,7 @@ class Profile(models.Model):
     image = models.ImageField(default='default.png', upload_to='profile_pics')
     bio = models.TextField(max_length=100)
     contact=models.IntegerField(default=0)
+    email=models.EmailField(null=True)
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -46,6 +47,7 @@ class Project(models.Model):
     description = models.TextField(max_length=1000,  null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile')
     date_posted = models.DateTimeField(auto_now_add=True)
+    project_url=models.CharField(max_length=200,null=True)
     like = models.PositiveIntegerField(default=0)
     
     def __str__(self):
