@@ -12,8 +12,12 @@ from .models import Profile,Project,Comment,Ratings
 
 
 def index(request):
+    projects = Project.objects.all()
+    context={
+        'projects' : projects,
+    }
+    return render(request,"index.html", context)
     
-    return render(request, 'index.html')
 
 def register(request):
     form=RegisterUserForm
