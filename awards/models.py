@@ -53,15 +53,20 @@ class Project(models.Model):
     def __str__(self):
             return self.project_title
 
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
+
     @classmethod
     def get_projects(cls):
         projects = Project.objects.all()
         return projects
     
     @classmethod
-    def find_project(cls,search_term):
-        project = Project.objects.filter(project_title__icontains=search_term)
-        return project
+    def search_project(cls,search_term):
+        return cls.objects.filter(project_title__icontains=search_term).all()
 
     class Meta:
         db_table = 'projects'
