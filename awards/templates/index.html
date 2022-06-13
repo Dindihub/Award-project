@@ -1,33 +1,63 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html'%}
+{% load bootstrap4 %}
+{% load static %}
 {% block content %}
 
-<div class="container-fluid tm-container-content tm-mt-60 text-center">
-    {% for project in projects %}
+<div
+class="container-fluid tm-hero text-center" style="background-image: url('/static/photos/samuel-scalzo-xyuYk9oLA8I-unsplash.jpg');padding:10em; background-position: fixed; background-size: cover;">
 
-    <div class="row tm-mb-90 tm-gallery" id="gallery ">
+<h3 class="text-white ">Welcome to AAwards </h3>
+<h3 class="text-white">Submit a Project for Rating and Rate others.</h3>
+<h5 class="text-warning"> <i>Let's get creative!</i></h5>
 
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-            <h5 class="text-center">{{project.project_title }}</h5><hr>
-            <figure class="effect-ming tm-video-item">
-                <figcaption class="d-flex align-items-center justify-content-center">
-                    
+
+
+
+</div>
+
+
+
+<div class="container-fluid tm-container-content tm-mt-60">
+
+    <div class="row mb-4">
+        
+    </div>
+
+
+    <div class="container-fluid tm-container-content tm-mt-60 text-center">
+        {% for project in projects %}
+
+        <div class="row tm-mb-90 tm-gallery" id="gallery ">
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <h5 class="text-center">{{project.project_title|title }}</h5>
+                <hr>
+                <figure class="effect-ming tm-video-item">
                     <img src="{{project.project_image.url}}" style="width:300px;background-repeat: no-repeat;"
                         class="card-img" />
-                </figcaption>
-                <div>
-                    <p class="mt-2"> Description</p><hr>
-                    <p class="text-center">{{project.description}}</p>
+                    <hr>
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                        <p class="text-center">{{project.description}}</p>
+                    </figcaption>
+                    <div>
+                    </div>
+                    <span><a href="{{ project.project_url}}" type="button" class="btn btn-warning"> <small>Visit
+                                site</small></a></span>
+                    <span><a href="" type="button" class="btn btn-warning"><small>Rate Site</small></a></span>
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray ">
+                    <span class="tm-text-gray-light text-center">
+                        Posted:{{ project.date_posted|date }}</span>by:<span>{{project.user.username|title}}</span>
                 </div>
-                <p><a href="{{ project.project_url}}">Link to GitHub</a></p>
-            </figure>
-            <div class="d-flex justify-content-between tm-text-gray ">
-                <span class="tm-text-gray-light text-center"> Posted:{{ project.date_posted }}</span>
-
             </div>
+
+            {% endfor %}
         </div>
 
-        {% endfor %}
+
+
+
+
     </div>
 
     {% endblock %}
