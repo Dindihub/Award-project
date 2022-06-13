@@ -5,15 +5,15 @@
 
      <ul class="navbar-nav ">
                 <li class="nav-item active">
-                    <form class="form-inline" method="get" action="#">
+                    <form class="form-inline" method="GET" action="{% url 'search' %}">
                         {% csrf_token %}
                         <div class="md-form my-0">
-                            <input class="form-control mr-sm-2 " type="text" placeholder="Search for projects" name="title" aria-label="Search">
+                            <input class="form-control mr-sm-2 " type="text" placeholder="Search for projects" name="project" aria-label="Search">
                         </div>
                     </form>
                 </li>
             </ul>
-     <h3 class="text-center col-md-6">AWARDS</h3>
+     <h3 class="text-center col-md-6">AAWARDS</h3>
 
      <!-- Collapsible wrapper -->
      <div class="collapse navbar-collapse" id="navbarButtonsExample">
@@ -51,10 +51,10 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="{% url 'home'%}"> home</a>
+                    <a class="dropdown-item" href="{% url 'home'%}"> Home</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="{% url 'profile'%}"> profile</a>
+                    <a class="dropdown-item" href="{% url 'profile'%}"> Profile</a>
                   </li>
                   <li><a class="dropdown-item" href="#">Settings</a></li>
                   <li><a class="dropdown-item" href="{% url 'logout'%}">Logout</a></li>
@@ -67,8 +67,8 @@
 
        </ul>
      </div>
-     <a href="{% url 'upload_project'%}" type="button" class="btn btn-dark ">
-           Upload a Project
+     <a href="{% url 'upload_project'%}" type="button" class="btn btn-sm btn-dark ">
+           <small>Upload a Project</small>
          </a>
      <!-- Collapsible wrapper -->
    </div>
