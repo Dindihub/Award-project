@@ -25,12 +25,12 @@ class="container-fluid tm-hero text-center" style="background-image: url('/stati
 
 
     <div class="container-fluid tm-container-content tm-mt-60 text-center">
+        
+        <div class="row tm-mb-90 tm-gallery d-flex justify-content-center align-items-center" id="gallery ">
         {% for project in projects %}
 
-        <div class="row tm-mb-90 tm-gallery" id="gallery ">
-
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-                <h5 class="text-center">{{project.project_title|title }}</h5>
+            <div class="card col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5 ml-4">
+                <h5 class=" card-title text-center">{{project.project_title|title }}</h5>
                 <hr>
                 <figure class="effect-ming tm-video-item">
                     <img src="{{project.project_image.url}}" style="width:300px;background-repeat: no-repeat;"
@@ -46,8 +46,8 @@ class="container-fluid tm-hero text-center" style="background-image: url('/stati
                     <span><a href="" type="button" class="btn btn-warning"><small>Rate Site</small></a></span>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray ">
-                    <span class="tm-text-gray-light text-center">
-                        Posted:{{ project.date_posted|date }}</span>by:<span>{{project.user.username|title}}</span>
+                    <span class="tm-text-gray-light ">
+                        Posted:{{ project.date_posted|date }}</span>by:<span><strong>{{project.user.username|title}}</strong>   </span>
                 </div>
             </div>
 

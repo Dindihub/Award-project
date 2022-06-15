@@ -12,6 +12,7 @@ django-bootstrap4 = "*"
 psycopg2 = "*"
 django-crispy-forms = "*"
 pillow = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

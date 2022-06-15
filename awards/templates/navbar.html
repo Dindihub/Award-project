@@ -4,6 +4,7 @@
      <!-- Navbar brand -->
 
      <ul class="navbar-nav ">
+       {% if user.is_authenticated%}
                 <li class="nav-item active">
                     <form class="form-inline" method="GET" action="{% url 'search' %}">
                         {% csrf_token %}
@@ -12,6 +13,9 @@
                         </div>
                     </form>
                 </li>
+                {% else %}
+         <a href="{% url 'login' %}"></a>
+         {% endif %}
             </ul>
      <h3 class="text-center col-md-6">AAWARDS</h3>
 
@@ -34,9 +38,6 @@
          <a href="{% url 'register' %}" type="button" class="btn btn-light me-3">
            <small>Register</small>  
          </a>
-         
-
-
        </div>
 
        
@@ -67,7 +68,7 @@
 
        </ul>
      </div>
-     <a href="{% url 'upload_project'%}" type="button" class="btn btn-sm btn-dark ">
+     <a href="{% url 'upload_project' %}" type="button" class="btn btn-sm btn-dark ">
            <small>Upload a Project</small>
          </a>
      <!-- Collapsible wrapper -->

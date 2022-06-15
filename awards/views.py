@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from .models import Profile,Project,Comment,Ratings
+from .serializer import ProfileSerializer, ProjectSerializer 
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # Create your views here.
 
 
@@ -48,7 +51,7 @@ def login_in(request):
 
 def log_out(request):
     logout(request)
-    return render(request,'registration/login.html')
+    return redirect('home')
 
 @login_required(login_url='login')
 def profile(request):
@@ -99,6 +102,7 @@ def upload_project(request):
                     new_project.user = current_user
                     new_project.profile = profile
                     new_project.save()
+                    print(new_project)
                     return redirect('home')
             else:
                 form = UploadProjectForm()
@@ -107,8 +111,16 @@ def upload_project(request):
                 'user':current_user,
                 'form':form,
                 'projects':projects,
+                
             }
             return render(request,'upload_project.html', context)
+
+
+
+
+
+
+
 
 
 
@@ -130,5 +142,63 @@ def upload_project(request):
     # }
     # return render(request, 'upload_project.html',context)
 
+@login_required(login_url='login')
+def rating(request,pk):
+    project = get_object_or_404(Project,pk=pk)
+    current_user = request.user
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            design_rating = form.cleaned_data["design_rating"]
+            usability_rating = form.cleaned_data["usability_rating"]
+            content_rating = form.cleaned_data["content_rating"]
+            comment = form.cleaned_data["comment"]
+            rating = form.save(commit=False)
+            rating.project = project
+            rating.author = current_user
+            rating.design_rating = design_rating
+            rating.usability_rating = usability_rating
+            rating.content_rating = content_rating
+            rating.comment = comment
+            rating.save()
+            return redirect ('home')
+        
+    else:
+        form = RatingForm()
+
+        context={
+            'project' : project,
+            'form' : form}
+    return render(request,'rating.html',context ) 
+
+def project_search(request):
+    if 'project' in request.GET and request.GET["project"]:
+    # if request.method == 'GET':
+        search_term= request.GET.get("project")
+        results = Project.search_project(search_term)
+        print(results)
+        message = f'search_term'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'search.html', {'message': message})
+
+class ProfileViewSet(APIView):
+    def get(self, request, format=None):
+        queryset = Profile.objects.all()
+        serializer_class = ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
+
+
+
+class ProjectViewSet(APIView):
+    def get(self, request, format=None):
+        queryset = Project.objects.all()
+        serializer_class = ProjectSerializer
+        return Response(serializers.data)
 
 

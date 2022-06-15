@@ -1,16 +1,24 @@
+{% extends 'base.html'%}
 {% load crispy_forms_tags %}
+{% block content %}
 
-<div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
-    <div>
-        <div>
-            <form action="" method="POST" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
-                {% csrf_token %}  
-                {{ prof_form|crispy}}
-                <button type="submit" class="btn btn-dark btn-sm">
-                    Update Profile
-                </button>
-            </form>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <h5 class="mt-2"> Update Profile</h5><hr>
+            <div>
+                <form action="" method="POST" class="form-outline col-md-6">
+                    {% csrf_token %}
+                    {{ prof_form|crispy}}
+                    <button type="submit" class="btn btn-warning btn-sm">
+                        Update Profile
+                    </button>
+                </form>
+
+            </div>
+
         </div>
     </div>
 </div>
+{% endblock %}

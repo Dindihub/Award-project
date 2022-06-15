@@ -73,6 +73,8 @@ INSTALLED_APPS = [
     'awards',
     'bootstrap4',
     'crispy_forms',
+    'static',
+    'rest_framework',
     
 ]
 
@@ -164,6 +166,9 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL= 'home'
+LOGOUT_REDIRECT_URL= 'home'
 
 
 # Default primary key field type

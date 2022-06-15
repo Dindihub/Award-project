@@ -11,7 +11,10 @@ urlpatterns=[
     path('logout',views.log_out,name='logout'),
     path('profile',views.profile,name='profile'),
     path('update_profile', views.update_profile, name='update_profile'),
-    path('upload_project', views.upload_project, name='upload_project'),    
+    path('upload_project', views.upload_project, name='upload_project'),
+    path('search', views.project_search, name='search'),
+    # path('rating/<int:pk>',views.rating,name='rating'),
+
 ]
 
 
