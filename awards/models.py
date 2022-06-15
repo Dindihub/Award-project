@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import datetime as dt
+from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.png', upload_to='profile_pics')
+    image = CloudinaryField('image',null=True)
     bio = models.TextField(max_length=100)
     contact=models.IntegerField(default=0)
     email=models.EmailField(null=True)
@@ -42,7 +43,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-    project_image = models.ImageField(upload_to='projects/',null=True)
+    project_image = CloudinaryField('project_image',null=True)
     project_title = models.CharField(max_length=100, null=True)
     description = models.TextField(max_length=1000,  null=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile')
