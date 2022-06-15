@@ -13,7 +13,8 @@ urlpatterns=[
     path('update_profile', views.update_profile, name='update_profile'),
     path('upload_project', views.upload_project, name='upload_project'),
     path('search', views.project_search, name='search'),
-    path('rating/<str:id>/',views.rating,name='rating'),
+    path ('rating/<str:id>/',views.rating,name='rating'),
+    
 
 ]
 
