@@ -43,7 +43,7 @@ class="container-fluid tm-hero text-center" style="background-image: url('/stati
                     </div>
                     <span><a href="{{ project.project_url}}" type="button" class="btn btn-warning"> <small>Visit
                                 site</small></a></span>
-                    <span><a href="" type="button" class="btn btn-warning"><small>Rate Site</small></a></span>
+                    <span><a href="{% url 'rating' project.id %}" type="button" class="btn btn-warning"><small> Rate Site</small></a></span>
                 </figure>
                 <div class="d-flex justify-content-between tm-text-gray ">
                     <span class="tm-text-gray-light ">
