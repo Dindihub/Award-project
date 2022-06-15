@@ -143,8 +143,11 @@ def upload_project(request):
     # return render(request, 'upload_project.html',context)
 
 @login_required(login_url='login')
-def rating(request,pk):
-    project = get_object_or_404(Project,pk=pk)
+def rating(request,id):
+    project=Project.objects.get(id=id)
+    rating=Ratings.objects.filter(project=project)
+    print(rating)
+    # project = get_object_or_404(Project,pk=pk)
     current_user = request.user
     if request.method == 'POST':
         form = RatingForm(request.POST)
@@ -168,7 +171,8 @@ def rating(request,pk):
 
         context={
             'project' : project,
-            'form' : form}
+            'form' : form,
+            'ratings':rating}
     return render(request,'rating.html',context ) 
 
 def project_search(request):
